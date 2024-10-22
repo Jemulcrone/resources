@@ -1,0 +1,33 @@
+#--Enter packages
+library(dplyr)
+library(tidyverse)
+library(readxl)
+library(writexl)
+
+install.package('readxl')
+library(readxl)
+
+#--Clear R's brain
+rm (list = ls())
+
+#--Set working directory
+setwd ("/Users/mulcrone/Desktop")
+
+#--Import datasets 
+mapdata <- read_excel("map_mukeys_R.xls")
+soilcodes <- read_excel("soil_codes_R_2_hapdolls.xlsx")
+
+#--Change double to character for soil codes MUKEY so MUKEY columns match
+soilcodes$MUKEY <- as.character(soilcodes$MUKEY)
+
+#--Perfrom join
+joined_soil_data <- left_join(mapdata, soilcodes, by = "MUKEY")
+
+#--Select the lowest code for each group of MUKEYS
+joined_soil_data_lowest_code <- joined_soil_data %>%
+  group_by(MUKEY) %>%
+  slice(which.min(SoilCode))
+
+#--Export joined data 
+#write_excel_csv(joined_soil_data, file = "joined_soil_data.xlxs")
+write_excel_csv(joined_soil_data_lowest_code, file = "joined_soil_data_lowest_code_2_hapdolls_mukey_3.csv")
