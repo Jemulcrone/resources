@@ -7,12 +7,12 @@ This is a repository where I keep tutorials and presentation materials for mysel
 ## Table of Contents 
 
 - [About](#about)
-- [Projects](#projects)
+- [Resources](#resources)
   * [Easy R Tutorial](#easy_r_tutorial)
   * [Soil Maps](#soil_maps)
 
 
-## Projects
+## Resources
 
 ## Easy R Tutorial 📝:
 
